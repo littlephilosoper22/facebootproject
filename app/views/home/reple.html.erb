@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <div class = "container">
-<form action="/write" method="POST" multipart="true">
+<form action="/write" method="POST">
   <div class="form-group">
     <label form="exampleInputEmail1">title</label>
     <input name="title" type="text" class="form-control" id="exampleInputEmail1" placeholder="title">
@@ -16,11 +16,7 @@
     <textarea name="content" class="form-control" rows="5" id="comment" placeholder="content"></textarea>
   </div>
   <label for="exampleInputPassword1">File upload</label>
-  <input type="file" name="image"><br>
-  
-  <!--저장 버튼-->
-  <button type="submit" class="btn btn-default" >Submit</button>
-
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
   <!--저장 버튼-->
  
@@ -41,6 +37,17 @@
                     
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            <p>Title : <%= @one_post.title%><br>
+                            Content <%= @one_post.content %><br></p>
+                            댓글입니다 : <form action = "/Post/reple/<%=@one_post.id%>/comments/create" method = "POST">
+                                        <input type= "text" name="input_comment">
+                                        <input type="submit">
+                            </form>
+                            <hr>
+                            <% @comments.each do |comment|%>
+                            <%=comment.content %><br>
+                            <%end%>
+                            <hr>
                              <%#원하시면 한번 몇분전에 작성한 글인지 해보세요!%> 
                         </div>
                         <div class="panel-body">
